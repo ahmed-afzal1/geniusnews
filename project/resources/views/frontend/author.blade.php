@@ -103,7 +103,7 @@
                                             @endif
                                             <img src="{{asset('assets/images/post/'.$post->image_big)}}" alt="">
                                             <div class="inner-content">
-                                                <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                     <h4 class="title">
                                                         {{strlen($post->title)>170 ? mb_substr($post->title,0,170,'utf-8').'...' : $post->title}}
                                                     </h4>

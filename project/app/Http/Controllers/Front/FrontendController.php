@@ -28,7 +28,7 @@ class FrontendController extends Controller
 
     public function __construct()
     {
-        // $this->auth_guests();
+        $this->auth_guests();
     }
 
     public function index(){
@@ -194,7 +194,7 @@ class FrontendController extends Controller
             }
             $str = strlen($data->title)>30 ? mb_substr($data->title,0,30,'utf-8').'...' : $data->title;
             $content = strlen(convertUtf8(strip_tags($data->description))) > 200 ? convertUtf8(substr(strip_tags($data->description), 0, 200)) . '...' : convertUtf8(strip_tags($data->description));
-            $url = route('frontend.details',[$data->id,$data->slug]);
+            $url = route('frontend.postBySubcategory.details',[$data->category->slug,$data->slug]);
             $date = route('frontend.postByDate').'?date='.$data->created_at->format('Y-m-d');
             
             $ajaxData['id'] = $data->id;
@@ -243,28 +243,59 @@ class FrontendController extends Controller
     }
 
     public function details(Request $request,$category,$slug){
-        $data = Post::where('slug',$slug)->first();
-        $ws = WidgetSetiings::find(1);
-        if($data){
-            $ip_address = $request->ip();
-            $is_view = View::where('post_id',$data->id)->where('ip_address',$ip_address)->first();
-            if(empty($is_view)){
-                $view = new View();
-                $view->post_id = $data->id;
-                $view->ip_address = $ip_address;
-                $view->save();
+        if(Category::where('slug',$slug)->exists()){
+            if(session()->has('language')){
+                $default_language = Language::find(session()->get('language'));
+            }else{
+    
+                $default_language = Language::where('is_default',1)->first();
             }
-            if($data->post_type == 'Trivia Quiz'){
-                return view('frontend.quiz',compact('data','ws'));
-            }elseif($data->post_type == 'Sorted List'){
-                return view('frontend.sort',compact('data','ws'));
-            }elseif($data->post_type == 'Personality Quiz'){
-                return view('frontend.personality',compact('data','ws'));
-            }
-            return view('frontend.details',compact('data','ws'));
-        }else{
-            return redirect()->back();
+
+           $data['parent'] = Category::where('slug',$category)->first();
+    
+           if(isset(Category::where('slug',$slug)->first()->title)){
+                $data['subcategory'] = Category::where('slug',$slug)->first()->title;
+           }else{
+                return view('errors.404');
+           }
+    
+           $cat_id = Category::where('slug',$slug)->first();
+           $data['datas'] = Category::find($cat_id->id)
+                            ->subcategoryPosts()
+                            ->where('status',true)
+                            ->where('schedule_post',0)
+                            ->where('language_id','=',$default_language->id)
+                            ->get();
+            return view('frontend.postBySubcategory',$data);
         }
+
+        if(Post::where('slug',$slug)->exists()){
+            $data = Post::where('slug',$slug)->first();
+            $ws = WidgetSetiings::find(1);
+            if($data){
+                $ip_address = $request->ip();
+                $is_view = View::where('post_id',$data->id)->where('ip_address',$ip_address)->first();
+                if(empty($is_view)){
+                    $view = new View();
+                    $view->post_id = $data->id;
+                    $view->ip_address = $ip_address;
+                    $view->save();
+                }
+                if($data->post_type == 'Trivia Quiz'){
+                    return view('frontend.quiz',compact('data','ws'));
+                }elseif($data->post_type == 'Sorted List'){
+                    return view('frontend.sort',compact('data','ws'));
+                }elseif($data->post_type == 'Personality Quiz'){
+                    return view('frontend.personality',compact('data','ws'));
+                }
+                return view('frontend.details',compact('data','ws'));
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return view('errors.404');
+        }
+        
     }
 
     public function searchByTag($s){

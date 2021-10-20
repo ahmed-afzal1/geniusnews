@@ -45,7 +45,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-//  $app->useEnvironmentPath(realpath(__DIR__.'/../vendor/markury/src/'));
+ $app->useEnvironmentPath(realpath(__DIR__.'/../vendor/markury/src/'));
 
 /*
 |--------------------------------------------------------------------------

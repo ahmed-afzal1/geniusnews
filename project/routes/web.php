@@ -553,7 +553,7 @@ Route::prefix('admin')->group(function(){
 
 Route::get('/','Front\FrontendController@index')->name('frontend.index');
 Route::get('/tag/{search}','Front\FrontendController@searchByTag')->name('tag.search');
-Route::get('/details/{category}/{slug}','Front\FrontendController@details')->name('frontend.details');
+Route::get('/{category}/{slug}','Front\FrontendController@details')->name('frontend.postBySubcategory.details');
 
 Route::post('the/genius/ocean/2441139', 'Front\FrontendController@subscription');
 Route::get('finalize', 'Front\FrontendController@finalize');
@@ -568,7 +568,6 @@ Route::get('/gallery-view/{id}','Front\GalleryController@view')->name('gallery.v
 Route::get('/all-poll','Front\FrontendController@allPoll')->name('front.allPoll');
 Route::get('/all-poll-result','Front\FrontendController@allPollResult')->name('front.allPollResult');
 Route::get('/news-search','Front\FrontendController@newsSearch')->name('front.news_search');
-Route::get('/page/{sl}','Front\FrontendController@page')->name('dynamic.page');
 Route::get('/language/{id}','Front\FrontendController@language')->name('front.language');
 
 
@@ -594,10 +593,10 @@ Route::post('/forgot', 'Front\ForgotController@forgot')->name('front.forgot.subm
 Route::get('auth/{provider}', 'Front\SocialRegisterController@redirectToProvider')->name('social.provider');
 Route::get('auth/{provider}/callback', 'Front\SocialRegisterController@handleProviderCallback');
 
-Route::get('/{category}/{subcategory}','Front\FrontendController@postBySubcategory')->name('frontend.postBySubcategory');
 Route::get('/{category}','Front\FrontendController@category')->name('frontend.category');
 
 Route::get('/click/count/{id}','Front\FrontendController@clickCount')->name('frontend.click.count');
+Route::get('/dynamic/page/{slug}','Front\FrontendController@page')->name('dynamic.page');
 
 
 

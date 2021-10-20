@@ -43,7 +43,7 @@
                         @if ($datas->count()>0)
                             @foreach ($datas as $post)
                                 <div class="col-md-6 mycol">
-                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                         <div class="single-news animation">
                                             <div class="content-wrapper">
                                                 @if ($post->image_big || $post->rss_image)
@@ -62,7 +62,7 @@
                                                     <img src="{{asset('assets/images/nopic.png')}}" alt="">
                                                 @endif
                                                 <div class="inner-content">
-                                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                         <h4 class="title">
                                                             {{ strlen($post->title)>50 ? mb_substr($post->title,0,50,'utf-8').'...' : $post->title}}
                                                         </h4>

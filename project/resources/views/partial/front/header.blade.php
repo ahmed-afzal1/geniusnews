@@ -16,7 +16,6 @@
 						<div class="top-header-content">
 							<div class="left-content">
 								<ul class="list">
-
 									@foreach ($social_links as $social_link)   
 									<li>
 										<a href="{{ $social_link->link}}" class="{{$social_link->name}}">
@@ -164,7 +163,7 @@
 														<div class="col-lg-2 p-0">
 															<div class="nav flex-column">
 																@foreach ($category->child->where('show_on_menu',1) as $child)
-																	<a class="nav-link tab-link"  href="{{ route('frontend.postBySubcategory',[$category->slug,$child->slug])}}" data-tab="
+																	<a class="nav-link tab-link"  href="{{ route('frontend.postBySubcategory.details',[$category->slug,$child->slug])}}" data-tab="
 																	#{{$child->id}}" >{{$child->title}} </a>
 																@endforeach
 															</div>  
@@ -178,7 +177,7 @@
 																		@foreach ($child->subcategoryPosts()->latest()->take(4)->get() as $post)
 																			<div class="col-lg-3 col-md-4 col-sm-6 pr-0">
 																				<div class="single-news-menu">
-																					<a href="{{ route('frontend.details',[$post->id,$post->slug])}}">
+																					<a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
 																						<div class="content-wrapper">
 																							<div class="img">
 																								@if ($post->image_big || $post->rss_image)
@@ -208,7 +207,7 @@
 																								@endif
 																							</div>
 																							<div class="inner-content">
-																								<a href="{{ route('frontend.details',[$post->id,$post->slug])}}">
+																								<a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
 																									<h4 class="title">
 																										{{ strlen($post->title)>40 ? mb_substr($post->title,0,40,'utf-8').'...' : $post->title}}
 																									</h4>
@@ -301,7 +300,7 @@
 								<div class="col-lg-2 p-0">
 									<div class="nav flex-column">
 										@foreach ($category->child as $child)
-											<a class="nav-link tab-link"  href="{{ route('frontend.postBySubcategory',[$category->slug,$child->slug])}}" data-tab="
+											<a class="nav-link tab-link"  href="{{ route('frontend.postBySubcategory.details',[$category->slug,$child->slug])}}" data-tab="
 											#{{$child->id}}" >{{$child->title}} </a>
 										@endforeach
 									</div>  
@@ -345,7 +344,7 @@
 																	@endif
 																</div>
 																<div class="inner-content">
-																	<a href="{{ route('frontend.details',[$post->id,$post->slug])}}">
+																	<a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
 																		<h4 class="title">
 																			{{ strlen($post->title)>40 ? mb_substr($post->title,0,40,'utf-8').'...' : $post->title}}
 																		</h4>

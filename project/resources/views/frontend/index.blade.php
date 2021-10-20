@@ -50,7 +50,7 @@
             <div class="col-lg-6 r-p">
                 <div class="intro-carousel">
                     @foreach ($sliders as $slider)
-                        <a href="{{ route('frontend.details',[$slider->category->slug,$slider->slug])}}" class="single-news big">
+                        <a href="{{ route('frontend.postBySubcategory.details',[$slider->category->slug,$slider->slug])}}" class="single-news big">
                             <div class="content-wrapper">
                                 @if ($slider->image_big || $slider->rss_image)
                                     <div class="tag" style="background:{{$slider->category->color}}">
@@ -108,7 +108,7 @@
             </div>
             <div class="col-lg-3 r-p mycol">
                 @foreach ($slider_rights_firsts as $slider_rights_first)
-                    <a href="{{ route('frontend.details',[$slider_rights_first->category->slug,$slider_rights_first->slug])}}" class="single-news animation">
+                    <a href="{{ route('frontend.postBySubcategory.details',[$slider_rights_first->category->slug,$slider_rights_first->slug])}}" class="single-news animation">
                         <div class="content-wrapper">
                             @if ($slider_rights_first->image_big || $slider_rights_first->rss_image)
                                 <div class="tag" style="background:{{$slider_rights_first->category->color}}">
@@ -163,7 +163,7 @@
             </div>
             <div class="col-lg-3 r-p mycol">
                 @foreach ($slider_rights_seconds as $slider_rights_second)
-                    <a href="{{ route('frontend.details',[$slider_rights_second->category->slug,$slider_rights_second->slug])}}" class="single-news animation">
+                    <a href="{{ route('frontend.postBySubcategory.details',[$slider_rights_second->category->slug,$slider_rights_second->slug])}}" class="single-news animation">
                         <div class="content-wrapper">
                             @if ($slider_rights_second->image_big || $slider_rights_second->rss_image)
                                 <div class="tag" style="background:{{$slider_rights_second->category->color}}">
@@ -257,7 +257,7 @@
                                                             @if ($child->subcategoryPosts()->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->count()>0)
                                                             @foreach ($child->subcategoryPosts()->orderBy('id','desc')->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->take(1)->get() as $post)
                                                                 <div class="single-news landScape-normal">
-                                                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                         <div class="content-wrapper">
                                                                             <div class="img">
                                                                                 @if ($post->image_big || $post->rss_image)
@@ -287,7 +287,7 @@
                                                                                 @endif
                                                                             </div>
                                                                             <div class="inner-content">
-                                                                                <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                                                <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                                     <h4 class="title">
                                                                                         {{strlen($post->title)>170 ? mb_substr($post->title,0,170,'utf-8').'...' : $post->title}}
                                                                                     </h4>
@@ -320,7 +320,7 @@
                                                         <div class="col-md-6 mycol">
                                                             @if ($child->subcategoryPosts()->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->count()>0)
                                                             @foreach ($child->subcategoryPosts()->orderBy('id','desc')->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->skip(1)->take(5)->get() as $post)
-                                                                <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                                <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                     <div class="single-box landScape-small-with-meta">
                                                                         <div class="img">
                                                                             @if ($post->image_big || $post->rss_image)
@@ -345,7 +345,7 @@
                                                                             @endif
                                                                         </div>
                                                                         <div class="content">
-                                                                            <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                                            <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                                 <h4 class="title">
                                                                                     {{ strlen($post->title)>130 ? mb_substr($post->title,0,130,'utf-8').'...' : $post->title}}
                                                                                 </h4>
@@ -418,7 +418,7 @@
                                     <div class="col-md-6 mycol">
                                         @foreach ($home_page_post->posts()->orderBy('id','desc')->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->take(1)->get() as $post)
                                                 <div class="single-news landScape-normal">
-                                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                         <div class="content-wrapper">
                                                             <div class="img">
                                                                 @if ($post->image_big || $post->rss_image)
@@ -449,7 +449,7 @@
                                                                 @endif
                                                             </div>
                                                             <div class="inner-content">
-                                                                <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                                <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                     <h4 class="title">
                                                                         {{strlen($post->title)>170 ? mb_substr($post->title,0,170,'utf-8').'...' : $post->title}}
                                                                     </h4>
@@ -480,7 +480,7 @@
                                     </div>
                                     <div class="col-md-6 mycol">
                                         @foreach ($home_page_post->posts()->orderBy('id','desc')->where('schedule_post','=',0)->where('status','=',true)->where('is_pending','=',0)->skip(1)->take(5)->get() as $post)
-                                        <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                        <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                             <div class="single-box landScape-small-with-meta">
                                                 <div class="img">
                                                     @if ($post->image_big || $post->rss_image)
@@ -507,7 +507,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="content">
-                                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                         <h4 class="title">
                                                             {{strlen($post->title)>130 ? mb_substr($post->title,0,130,'utf-8').'...' : $post->title}}
                                                         </h4>
@@ -557,7 +557,7 @@
                                 <div class="row">
                                     @foreach ($is_features as $feature)
                                     <div class="col-lg-12">
-                                        <a href="{{route('frontend.details',[$feature->category->slug,$feature->slug])}}">
+                                        <a href="{{route('frontend.postBySubcategory.details',[$feature->category->slug,$feature->slug])}}">
                                             <div class="single-box landScape-small-with-meta">
                                                 <div class="img">
                                                     @if ($feature->image_big || $feature->rss_image)
@@ -585,7 +585,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="content">
-                                                    <a href="{{route('frontend.details',[$feature->category->slug,$feature->slug])}}">
+                                                    <a href="{{route('frontend.postBySubcategory.details',[$feature->category->slug,$feature->slug])}}">
                                                         <h4 class="title">
                                                         {{strlen($feature->title)>40 ? mb_substr($feature->title,0,40,"utf-8") : $feature->title}}
                                                         </h4>
@@ -618,7 +618,7 @@
                                 <div class="row">
                                     @foreach ($is_recents as $is_recent)
                                     <div class="col-lg-12">
-                                        <a href="{{route('frontend.details',[$is_recent->category->slug,$is_recent->slug])}}">
+                                        <a href="{{route('frontend.postBySubcategory.details',[$is_recent->category->slug,$is_recent->slug])}}">
                                             <div class="single-box landScape-small-with-meta">
                                                 <div class="img">
                                                     @if ($is_recent->image_big || $is_recent->rss_image)
@@ -646,7 +646,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="content">
-                                                    <a href="{{route('frontend.details',[$is_recent->category->slug,$is_recent->slug])}}">
+                                                    <a href="{{route('frontend.postBySubcategory.details',[$is_recent->category->slug,$is_recent->slug])}}">
                                                         <h4 class="title">
                                                             {{strlen($is_recent->title)>40 ? mb_substr($is_recent->title,0,40,"utf-8") : $is_recent->title}}
                                                         </h4>
@@ -681,7 +681,7 @@
                                     @endphp
                                         @if ($post)
                                             <div class="col-lg-12">
-                                                <a href="{{route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                <a href="{{route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                     <div class="single-box landScape-small-with-meta">
                                                         @if ($post->image_big || $post->rss_image)
                                                             <div class="img">
@@ -708,7 +708,7 @@
                                                             </div>
                                                         @endif
                                                         <div class="content">
-                                                            <a href="{{route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                            <a href="{{route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                                 <h4 class="title">
                                                                 {{ $post->title }}
                                                                 </h4>
@@ -930,7 +930,7 @@
                                 @foreach ($is_features as $post)
                                 <div class="item">
                                     <div class="single-news animation">
-                                        <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                        <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                             <div class="content-wrapper">
                                                 @if ($post->image_big || $post->rss_image)
                                                     <div class="tag" style="background:{{$post->category->color}}">
@@ -950,7 +950,7 @@
                                                     <img src="{{asset('assets/images/nopic.png')}}" alt="">
                                                 @endif
                                                 <div class="inner-content">
-                                                    <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                         <h4 class="title">
                                                             {{ strlen($post->title)>30 ? mb_substr($post->title,0,30,'utf-8').'...' : $post->title}}
                                                         </h4>
@@ -1040,7 +1040,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 more">
                                         @foreach ($more_news as $more_new)
-                                        <a href="{{ route('frontend.details',[$more_new->category->slug,$more_new->slug])}}">
+                                        <a href="{{ route('frontend.postBySubcategory.details',[$more_new->category->slug,$more_new->slug])}}">
                                             <div class="single-news land-scap-medium">
                                                 <div class="img">
                                                     @if ($more_new->image_big || $more_new->rss_image)
@@ -1070,7 +1070,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="content">
-                                                    <a href="{{ route('frontend.details',[$more_new->category->slug,$more_new->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$more_new->category->slug,$more_new->slug])}}">
                                                         <h4 class="title">
                                                             {{ strlen($more_new->title)>30 ? mb_substr($more_new->title,0,30,'utf-8').'...' : $more_new->title}}
                                                         </h4>

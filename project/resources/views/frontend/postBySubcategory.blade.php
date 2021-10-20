@@ -49,7 +49,7 @@
                             @foreach ($datas as $post)
                                 <div class="col-md-6 mycol">
                                     <div class="single-news animation">
-                                        <a href="{{ route('frontend.details',[$post->category->slug,$post->slug])}}">
+                                        <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                             <div class="content-wrapper">
                                                 <div class="tag">
                                                     {{$subcategory}}
@@ -66,7 +66,7 @@
                                                     <img src="{{asset('assets/images/nopic.png')}}" alt="">
                                                 @endif
                                                 <div class="inner-content">
-                                                    <a href="{{ route('frontend.details',[$post->id,$post->slug])}}">
+                                                    <a href="{{ route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                                         <h4 class="title">
                                                             {{ strlen($post->title)>50 ? mb_substr($post->title,0,50,'utf-8').'...' : $post->title}}
                                                         </h4>

@@ -90,7 +90,7 @@
                                         @endif
                                     </div>
                                     <div class="post-details">
-                                        <a href="{{route('frontend.details',[$post->id,$post->slug])}}">
+                                        <a href="{{route('frontend.postBySubcategory.details',[$post->category->slug,$post->slug])}}">
                                             <h4 class="post-title">
                                                 {{ strlen($post->title)>30 ? mb_substr($post->title,0,30,'utf-8').'...' : $post->title}}
                                             </h4>
