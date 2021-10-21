@@ -36,7 +36,8 @@ class GeneralSettings extends Model
         'from_email',
         'from_name',
         'is_smtp',
-        'is_verification_email'
+        'is_verification_email',
+        'version'
     ];
     protected $table    = 'generalsettings';
     public $timestamps  = false;

@@ -94,17 +94,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('languages',$languages);
         });
 
-        $gs = GeneralSettings::findOrFail(1);
-        Config::set('mail.host', $gs->smtp_host);
-        Config::set('mail.port', $gs->smtp_port);
-        Config::set('mail.encryption', $gs->email_encryption);
-        Config::set('mail.username', $gs->smtp_user);
-        Config::set('mail.password', $gs->smtp_pass);
 
-        if (!Session::has('popup')) 
-        {
-            $gs->with('visited', 1);
-        }
-        Session::put('popup' , 1);
     }
 }

@@ -100,6 +100,105 @@
         </div>
     </div>
 
+    <div class="row row-cards-one">
+        <div class="col-md-6 col-xl-3">
+            <div class="card c-info-box-area">
+                <div class="c-info-box box1">
+                    <p>{{ App\Models\Admin::where('id','!=',1)->where( 'created_at', '>', Carbon\Carbon::now()->subDays(30))->get()->count()  }}</p>
+                </div>
+                <div class="c-info-box-content">
+                    <h6 class="title">{{ __('New Users') }}</h6>
+                    <p class="text">{{ __('Last 30 Days') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card c-info-box-area">
+                <div class="c-info-box box2">
+                    <p>{{ App\Models\Admin::where('id','!=',1)->count() }}</p>
+                </div>
+                <div class="c-info-box-content">
+                    <h6 class="title">{{ __('Total Users') }}</h6>
+                    <p class="text">{{ __('All Time') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card c-info-box-area">
+                <div class="c-info-box box3">
+                    <p>{{ App\Models\Subscriber::get()->count()  }}</p>
+                </div>
+                <div class="c-info-box-content">
+                    <h6 class="title">{{ __('Total Subscribers') }}</h6>
+                    <p class="text">{{ __('All Time') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card c-info-box-area">
+                <div class="c-info-box box4">
+                     <p>{{ App\Models\Font::get()->count() }}</p>
+                </div>
+                <div class="c-info-box-content">
+                    <h6 class="title">{{ __('Total Fonts') }}</h6>
+                    <p class="text">{{ __('All Time') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cards-one">
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <h5 class="card-header">{{ __('Recent User(s)') }}</h5>
+                <div class="card-body">
+                    <div class="my-table-responsiv">
+                        <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('Email') }}</th>
+                                    <th>{{ __('Joined') }}</th>
+                                </tr>
+                                @foreach($userRole as $role)
+                                    @foreach ($role->users()->orderBy('id','desc')->take(10)->get() as $data)
+                                        <tr>
+                                            <td>{{ $data->email }}</td>
+                                            <td>{{ $data->created_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <h5 class="card-header">{{ __('Subscribers') }}</h5>
+                <div class="card-body">
+                    <div class="my-table-responsiv">
+                        <table class="table table-hover dt-responsive" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>{{ __("#Sl") }}</th>
+                                    <th>{{ __("Email") }}</th>
+                                </tr>
+                                @foreach($subscribers as $data)
+                                    <tr>
+                                        <td>{{ $data->id }}</td>
+                                        <td>{{ $data->email }}</td>
+                                    </tr>
+                                @endforeach
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @endsection

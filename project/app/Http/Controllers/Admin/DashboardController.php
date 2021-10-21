@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\Language;
 use App\Models\PollQuestion;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Rss;
+use App\Models\Subscriber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -32,7 +34,10 @@ class DashboardController extends Controller
         $data['schedules'] = Auth::guard('admin')->user()->posts()->where('status','=','true')->where('schedule_post','=',1)->where('is_pending','=',0)->count();
         $data['rss'] = Rss::all()->count();
         $data['polls'] = PollQuestion::all()->count();
+        $data['userRole'] = Role::where('id','!=',1)->get();
+        $data['subscribers'] = Subscriber::orderBy('id','desc')->orderBy('id','desc')->take(10)->get();
         $data['categories'] = Category::where('language_id','=',$default_language->id);
+
         return view('admin.dashboard',$data);
     }
 

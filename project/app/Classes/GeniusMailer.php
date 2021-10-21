@@ -82,7 +82,6 @@ class GeniusMailer
 
     public function sendCustomMail(array $mailData)
     {
-    //   return $mailData;
         try{
 
             //Recipients
